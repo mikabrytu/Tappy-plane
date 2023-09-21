@@ -1,0 +1,53 @@
+[gd_scene load_steps=7 format=3 uid="uid://c3vttq1hvnrva"]
+
+[ext_resource type="Script" path="res://scenes/background/background.gd" id="1_qym5o"]
+[ext_resource type="Texture2D" uid="uid://d2ucqsabphuo7" path="res://assets/background/sky.png" id="2_i2tvj"]
+[ext_resource type="Texture2D" uid="uid://tehjfl6kkx27" path="res://assets/background/clouds_1.png" id="2_u8of2"]
+[ext_resource type="Texture2D" uid="uid://cw5y8k0hnrptq" path="res://assets/background/clouds_2.png" id="3_wa82t"]
+[ext_resource type="Texture2D" uid="uid://ckvcq0qlc3q7l" path="res://assets/background/rocks_1.png" id="4_34qns"]
+[ext_resource type="Texture2D" uid="uid://2o4mykbovchw" path="res://assets/background/rocks_2.png" id="5_iqu71"]
+
+[node name="Background" type="ParallaxBackground"]
+scale = Vector2(0.792, 0.792)
+transform = Transform2D(0.792, 0, 0, 0.792, 0, 0)
+script = ExtResource("1_qym5o")
+speed = 80.0
+
+[node name="Sky" type="ParallaxLayer" parent="."]
+motion_scale = Vector2(2.08165e-12, 2.08165e-12)
+motion_mirroring = Vector2(1920, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Sky"]
+texture = ExtResource("2_i2tvj")
+centered = false
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="."]
+motion_scale = Vector2(0.1, 0.1)
+motion_mirroring = Vector2(1920, 2.08165e-12)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxLayer"]
+texture = ExtResource("2_u8of2")
+centered = false
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="."]
+motion_scale = Vector2(0.3, 0.3)
+motion_mirroring = Vector2(1920, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxLayer2"]
+texture = ExtResource("3_wa82t")
+centered = false
+
+[node name="ParallaxLayer3" type="ParallaxLayer" parent="."]
+motion_scale = Vector2(0.5, 0.5)
+motion_mirroring = Vector2(1920, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxLayer3"]
+texture = ExtResource("4_34qns")
+centered = false
+
+[node name="ParallaxLayer4" type="ParallaxLayer" parent="."]
+motion_mirroring = Vector2(1920, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxLayer4"]
+texture = ExtResource("5_iqu71")
+centered = false

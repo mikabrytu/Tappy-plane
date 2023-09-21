@@ -1,0 +1,50 @@
+[gd_scene load_steps=9 format=3 uid="uid://b3umw2325ulo4"]
+
+[ext_resource type="PackedScene" uid="uid://c3vttq1hvnrva" path="res://scenes/background/background.tscn" id="1_apce2"]
+[ext_resource type="PackedScene" uid="uid://camshuu1rdrdy" path="res://scenes/player/player.tscn" id="2_tpdul"]
+[ext_resource type="PackedScene" uid="uid://bj4jp84at31dk" path="res://scenes/obstacle/obstacle_controller.tscn" id="3_ncxym"]
+[ext_resource type="Script" path="res://scenes/ui_controller.gd" id="4_342bl"]
+[ext_resource type="PackedScene" uid="uid://cn7fstplsbswa" path="res://scenes/game_hud/game_over.tscn" id="4_x6g24"]
+[ext_resource type="PackedScene" uid="uid://c6xy6r24uceyo" path="res://scenes/power_ups/power_up_controller.tscn" id="4_yuxrx"]
+[ext_resource type="PackedScene" uid="uid://c48cx4oq12s5y" path="res://scenes/game_hud/game_hud.tscn" id="5_5crhm"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_u0wns"]
+size = Vector2(521, 41)
+
+[node name="Game" type="Node2D"]
+
+[node name="Background" parent="." instance=ExtResource("1_apce2")]
+
+[node name="Player" parent="." instance=ExtResource("2_tpdul")]
+position = Vector2(107, 301)
+
+[node name="Obstacle Controller" parent="." instance=ExtResource("3_ncxym")]
+
+[node name="Power Up Controller" parent="." instance=ExtResource("4_yuxrx")]
+
+[node name="Ground" type="Area2D" parent="."]
+position = Vector2(0, 871)
+collision_layer = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground"]
+visible = false
+position = Vector2(235.5, 10.5)
+shape = SubResource("RectangleShape2D_u0wns")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Ground"]
+collision_layer = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground/StaticBody2D"]
+position = Vector2(235.5, 10.5)
+shape = SubResource("RectangleShape2D_u0wns")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+script = ExtResource("4_342bl")
+
+[node name="Game Hud" parent="CanvasLayer" instance=ExtResource("5_5crhm")]
+
+[node name="Game Over" parent="CanvasLayer" instance=ExtResource("4_x6g24")]
+
+[connection signal="die" from="Player" to="CanvasLayer" method="_on_player_die"]
+[connection signal="collision_entered" from="Obstacle Controller" to="Player" method="_on_obstacle_collision_entered"]
+[connection signal="body_entered" from="Ground" to="Player" method="_on_ground_entered"]

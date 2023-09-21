@@ -1,0 +1,115 @@
+[gd_scene load_steps=5 format=3 uid="uid://cq5dar5k5tp57"]
+
+[ext_resource type="Texture2D" uid="uid://d2ucqsabphuo7" path="res://assets/background/sky.png" id="1_5o1fw"]
+[ext_resource type="Script" path="res://scenes/menu/menu.gd" id="1_snn37"]
+[ext_resource type="FontFile" uid="uid://cntrlptjxl8sv" path="res://assets/fonts/LuckiestGuy-Regular.ttf" id="2_ibb11"]
+[ext_resource type="AudioStream" uid="uid://disiio6snxndg" path="res://assets/audio/bgm_menu.mp3" id="4_xvwfp"]
+
+[node name="Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_snn37")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_5o1fw")
+expand_mode = 5
+
+[node name="Title" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 10.0
+offset_top = 31.0
+offset_right = 10.0
+offset_bottom = 165.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.862745, 0.243137, 0.254902, 1)
+theme_override_colors/font_shadow_color = Color(0.462745, 0.0862745, 0.0941176, 1)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_fonts/font = ExtResource("2_ibb11")
+theme_override_font_sizes/font_size = 64
+text = "Tappy
+Plane"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+uppercase = true
+
+[node name="Message" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -26.0
+offset_bottom = 26.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_shadow_color = Color(0.709804, 0.803922, 0.843137, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 4
+theme_override_constants/shadow_offset_y = 4
+theme_override_constants/outline_size = 1
+theme_override_fonts/font = ExtResource("2_ibb11")
+theme_override_font_sizes/font_size = 48
+text = "Click to
+Play"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="Highscore Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_top = -46.0
+offset_right = 108.0
+offset_bottom = -20.0
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.862745, 0.243137, 0.254902, 1)
+theme_override_colors/font_shadow_color = Color(0.462745, 0.0862745, 0.0941176, 1)
+theme_override_fonts/font = ExtResource("2_ibb11")
+theme_override_font_sizes/font_size = 28
+text = "Highscore"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="Highscore Count" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -56.0
+offset_top = -52.0
+offset_right = -16.0
+offset_bottom = -20.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.862745, 0.243137, 0.254902, 1)
+theme_override_colors/font_shadow_color = Color(0.462745, 0.0862745, 0.0941176, 1)
+theme_override_fonts/font = ExtResource("2_ibb11")
+theme_override_font_sizes/font_size = 28
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_xvwfp")
+autoplay = true

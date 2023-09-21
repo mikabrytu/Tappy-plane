@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://igunalfkxggk"]
+
+[ext_resource type="Texture2D" uid="uid://brpcaqm8ux8pa" path="res://assets/power_ups/medalGold.png" id="1_8f4vj"]
+[ext_resource type="Script" path="res://scenes/power_ups/coin.gd" id="1_j52qc"]
+[ext_resource type="AudioStream" uid="uid://cq1p1v7pqoksc" path="res://assets/audio/score.wav" id="3_46vci"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_yko3f"]
+radius = 61.0082
+
+[node name="Coin" type="Area2D"]
+collision_layer = 8
+script = ExtResource("1_j52qc")
+speed = 350.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_8f4vj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -2)
+shape = SubResource("CircleShape2D_yko3f")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(80, 0)
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_46vci")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://bj4jp84at31dk"]
+
+[ext_resource type="Script" path="res://scenes/obstacle/obstacle_controller.gd" id="1_hrp3e"]
+[ext_resource type="PackedScene" uid="uid://dftsoud5qwqiy" path="res://scenes/obstacle/obstacle.tscn" id="2_aw6d5"]
+
+[node name="Obstacle Controller" type="Node2D" node_paths=PackedStringArray("bottom_spawn_position", "top_spawn_position")]
+script = ExtResource("1_hrp3e")
+obstacle_scene = ExtResource("2_aw6d5")
+bottom_spawn_position = NodePath("Bottom Spawn Position")
+top_spawn_position = NodePath("Top Spawn Position")
+spawn_offset = Vector2(150, -150)
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
+autostart = true
+
+[node name="Top Spawn Position" type="Marker2D" parent="."]
+position = Vector2(525, 30)
+
+[node name="Bottom Spawn Position" type="Marker2D" parent="."]
+position = Vector2(525, 830)
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

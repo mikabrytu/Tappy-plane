@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://c6xy6r24uceyo"]
+
+[ext_resource type="Script" path="res://scenes/power_ups/power_up_controller.gd" id="1_44r28"]
+
+[node name="Power Up Controller" type="Node2D" node_paths=PackedStringArray("spawn_position")]
+script = ExtResource("1_44r28")
+spawn_position = NodePath("Marker2D")
+spawn_offset = Vector2(100, 500)
+min_max_timer = Vector2(1, 2.5)
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(578, 2.08165e-12)
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
