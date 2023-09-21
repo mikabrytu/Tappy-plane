@@ -20,7 +20,7 @@ func _on_visible_on_screen_notifier_2d_screen_exited():
 	queue_free()
 
 
-func _on_body_entered(body):
+func _on_body_entered(_body):
 	GameManager.increase_score()
 	$AudioStreamPlayer2D.play()
 	$Sprite2D.hide()

@@ -45,5 +45,5 @@ func _on_timer_timeout():
 	_new_obstacle()
 
 
-func _on_obstacle_hit(body):
+func _on_obstacle_hit(_body):
 	collision_entered.emit()
