@@ -16,7 +16,7 @@ script = ExtResource("1_xhk0e")
 texture = ExtResource("2_eknk7")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-1.5, 0)
+position = Vector2(2.08165e-12, 2.08165e-12)
 shape = SubResource("RectangleShape2D_igakk")
 
 [node name="Movement System" type="Node" parent="."]

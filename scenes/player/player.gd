@@ -1,3 +1,4 @@
+class_name Player
 extends RigidBody2D
 
 
@@ -77,6 +78,13 @@ func _reset_physics():
 func _die():
 	die.emit()
 	queue_free()
+
+
+# Public API
+
+
+func try_kill():
+	_die()
 
 
 # Listeners

@@ -22,4 +22,8 @@ func _on_body_entered(body):
 	if layer == _parent_layer:
 		return
 	
+	if (layer == 1):
+		var player = body as Player
+		player.try_kill()
+	
 	queue_free()
