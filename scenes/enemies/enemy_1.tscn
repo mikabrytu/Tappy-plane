@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://d3b5j5id6m0l0"]
+[gd_scene load_steps=10 format=3 uid="uid://d3b5j5id6m0l0"]
 
 [ext_resource type="Script" path="res://scenes/enemies/enemy_1.gd" id="1_11hyw"]
 [ext_resource type="Texture2D" uid="uid://baa7blp3q6yu" path="res://assets/plane/planes.png" id="1_y4e07"]
 [ext_resource type="Script" path="res://systems/move.gd" id="2_03q5s"]
+[ext_resource type="PackedScene" uid="uid://b6g5v4dmmyhik" path="res://scenes/bullet/bullet.tscn" id="2_y6rq7"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_icv44"]
 atlas = ExtResource("1_y4e07")
@@ -36,13 +37,15 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_ldyu8"]
 radius = 33.0151
 
-[node name="Enemy 1" type="Area2D"]
-position = Vector2(2.08165e-12, 2.08165e-12)
+[node name="Enemy 1" type="Area2D" node_paths=PackedStringArray("bullet_spawn")]
+position = Vector2(402, 406)
 collision_layer = 2
 script = ExtResource("1_11hyw")
-distance = 150.0
+distance = 200.0
 height_offset = Vector2(-25, 25)
 flee_duration = 1.5
+bullet_scene = ExtResource("2_y6rq7")
+bullet_spawn = NodePath("Marker2D")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(-1, 1)
@@ -63,6 +66,9 @@ script = ExtResource("2_03q5s")
 speed = 100.0
 direction = Vector2(-1, 2.08165e-12)
 move = true
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(-60, 0)
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

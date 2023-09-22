@@ -5,13 +5,20 @@ extends Area2D
 @export var distance: float
 @export var height_offset: Vector2
 @export var flee_duration: float
-
+@export_category("Bullet")
+@export var bullet_scene: PackedScene
+@export var bullet_spawn: Marker2D
 
 var _target: Node2D
 var _origin: Vector2
+var _can_shoot: bool = true
 
 
 # Godot Messages
+
+
+#func _ready():
+#	_attack()
 
 
 func _process(delta):
@@ -34,7 +41,14 @@ func _process(delta):
 
 
 func _attack():
-	pass
+	if not _can_shoot:
+		return
+	
+	_can_shoot = false
+	
+	var b = bullet_scene.instantiate()
+	get_tree().root.add_child.call_deferred(b)
+	b.setup(bullet_spawn, Vector2.LEFT, collision_layer)
 
 
 func _flee():
