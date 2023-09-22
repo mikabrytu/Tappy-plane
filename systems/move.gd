@@ -4,12 +4,19 @@ extends Node
 
 @export var speed: float
 @export var direction: Vector2
-@export var autostart: bool
+@export var move: bool
 
 
 # Godot Messages
 
 
 func _process(delta):
-	if autostart:
+	if move:
 		get_parent().position += direction * speed * delta
+
+
+# Public API
+
+
+func can_move(m: bool):
+	move = m
