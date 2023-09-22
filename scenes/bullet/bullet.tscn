@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://b6g5v4dmmyhik"]
+
+[ext_resource type="Script" path="res://scenes/bullet/bullet.gd" id="1_xhk0e"]
+[ext_resource type="Texture2D" uid="uid://co1sr3le4i0tl" path="res://assets/plane/bulletSand2_outline.png" id="2_eknk7"]
+[ext_resource type="Script" path="res://systems/move.gd" id="3_n87eb"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_igakk"]
+size = Vector2(29, 20)
+
+[node name="Bullet" type="Area2D"]
+collision_layer = 16
+collision_mask = 3
+script = ExtResource("1_xhk0e")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_eknk7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1.5, 0)
+shape = SubResource("RectangleShape2D_igakk")
+
+[node name="Movement System" type="Node" parent="."]
+script = ExtResource("3_n87eb")
+speed = 250.0
+direction = Vector2(1, 2.08165e-12)
+move = true
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
