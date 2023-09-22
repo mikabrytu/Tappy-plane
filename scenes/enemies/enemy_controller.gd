@@ -14,7 +14,7 @@ func _new_enemy():
 	var spawn = spawn_points[2]
 	
 	e.set_target(player)
-	e.position = spawn.get_global_position()
+	e.set_origin(spawn.get_global_position())
 	
 	add_child(e)
 
