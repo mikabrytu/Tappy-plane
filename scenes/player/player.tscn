@@ -82,9 +82,9 @@ lock_rotation = true
 script = ExtResource("1_ejheb")
 fly_impulse = 500.0
 min_fall_velocity = 100.0
-attack_impulse = 1000.0
-attack_gravity = 2.0
-attack_rest_timer = 0.35
+attack_impulse = 2000.0
+attack_rest_timer = 0.225
+reset_position_duration = 0.8
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_ohdba")

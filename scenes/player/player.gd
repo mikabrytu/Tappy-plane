@@ -8,8 +8,8 @@ signal die
 @export var min_fall_velocity: float = 300.0
 @export_category("Attack")
 @export var attack_impulse: float = 750
-@export var attack_gravity: float = 1.5
 @export var attack_rest_timer: float = 0.5
+@export var reset_position_duration: float = 0.5
 @export_category("Animation")
 @export var min_angle: float = 30.0 # Positive angles are actually aiming down and vice versa
 @export var max_angle: float = -30.0
@@ -55,12 +55,21 @@ func _fly():
 
 
 func _attack():
+	var reset_position = position
+	
 	linear_velocity = Vector2.ZERO
-	gravity_scale = attack_gravity
+	gravity_scale = 0
 	apply_central_impulse(Vector2.RIGHT * attack_impulse)
 	
 	await get_tree().create_timer(attack_rest_timer).timeout
 	
+	reset_position.y = position.y
+	var tween = create_tween()
+	tween.tween_property(self, "position", reset_position, reset_position_duration)
+	tween.tween_callback(_reset_physics)
+
+
+func _reset_physics():
 	linear_velocity = Vector2.ZERO
 	gravity_scale = _original_gravity
 
