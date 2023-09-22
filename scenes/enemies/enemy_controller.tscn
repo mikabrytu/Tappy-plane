@@ -1,3 +1,38 @@
-[gd_scene format=3 uid="uid://kfn3wi8s5l1m"]
+[gd_scene load_steps=3 format=3 uid="uid://kfn3wi8s5l1m"]
 
-[node name="Enemy Controller" type="Node2D"]
+[ext_resource type="Script" path="res://scenes/enemies/enemy_controller.gd" id="1_6bdn7"]
+[ext_resource type="PackedScene" uid="uid://d3b5j5id6m0l0" path="res://scenes/enemies/enemy_1.tscn" id="2_rv8i7"]
+
+[node name="Enemy Controller" type="Node2D" node_paths=PackedStringArray("spawn_points")]
+script = ExtResource("1_6bdn7")
+enemies = Array[PackedScene]([ExtResource("2_rv8i7")])
+spawn_points = [NodePath("Spawn Points/Marker2D 1"), NodePath("Spawn Points/Marker2D 2"), NodePath("Spawn Points/Marker2D 3"), NodePath("Spawn Points/Marker2D 4"), NodePath("Spawn Points/Marker2D 5")]
+
+[node name="Start Spawn Timer" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true
+autostart = true
+
+[node name="Spawn Timer" type="Timer" parent="."]
+wait_time = 3.0
+
+[node name="Spawn Points" type="Node2D" parent="."]
+position = Vector2(638, 427)
+
+[node name="Marker2D 1" type="Marker2D" parent="Spawn Points"]
+position = Vector2(2.08165e-12, -200)
+
+[node name="Marker2D 2" type="Marker2D" parent="Spawn Points"]
+position = Vector2(2.08165e-12, -100)
+
+[node name="Marker2D 3" type="Marker2D" parent="Spawn Points"]
+position = Vector2(2.08165e-12, 2.08165e-12)
+
+[node name="Marker2D 4" type="Marker2D" parent="Spawn Points"]
+position = Vector2(2.08165e-12, 100)
+
+[node name="Marker2D 5" type="Marker2D" parent="Spawn Points"]
+position = Vector2(2.08165e-12, 200)
+
+[connection signal="timeout" from="Start Spawn Timer" to="." method="_on_start_spawn_timer_timeout"]
+[connection signal="timeout" from="Spawn Timer" to="." method="_on_spawn_timer_timeout"]
