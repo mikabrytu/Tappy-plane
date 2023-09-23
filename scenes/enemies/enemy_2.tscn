@@ -1,30 +1,61 @@
-[gd_scene load_steps=7 format=3 uid="uid://bw2dprluldokk"]
+[gd_scene load_steps=15 format=3 uid="uid://cktfypuviesm0"]
 
 [ext_resource type="Texture2D" uid="uid://baa7blp3q6yu" path="res://assets/plane/planes.png" id="1_0533x"]
+[ext_resource type="Script" path="res://scenes/enemies/enemy_2.gd" id="1_wqdn3"]
+[ext_resource type="PackedScene" uid="uid://b6g5v4dmmyhik" path="res://scenes/bullet/bullet.tscn" id="2_j0eph"]
+[ext_resource type="Texture2D" uid="uid://c2k8s34g30h8b" path="res://assets/vfx/explosionSmoke1.png" id="3_lonb1"]
+[ext_resource type="Texture2D" uid="uid://bypk8msuu1yyn" path="res://assets/vfx/explosionSmoke2.png" id="4_2ncxf"]
+[ext_resource type="Texture2D" uid="uid://dnyv4kjhwurk3" path="res://assets/vfx/explosionSmoke3.png" id="5_i5he4"]
+[ext_resource type="Texture2D" uid="uid://brvp7mx06e6v6" path="res://assets/vfx/explosionSmoke4.png" id="6_0mbf6"]
+[ext_resource type="Texture2D" uid="uid://grv4r7utu3sw" path="res://assets/vfx/explosionSmoke5.png" id="7_mihvp"]
+[ext_resource type="Script" path="res://systems/move.gd" id="9_xcpwp"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_icv44"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_ovyws"]
 atlas = ExtResource("1_0533x")
-region = Rect2(0, 292, 88, 73)
+region = Rect2(0, 73, 88, 73)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_y8tfs"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_73ojr"]
 atlas = ExtResource("1_0533x")
-region = Rect2(0, 219, 88, 73)
+region = Rect2(0, 0, 88, 73)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_15n43"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_kntke"]
 atlas = ExtResource("1_0533x")
-region = Rect2(0, 146, 88, 73)
+region = Rect2(0, 365, 88, 73)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_pqdxj"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_icv44")
+"texture": ExtResource("3_lonb1")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_y8tfs")
+"texture": ExtResource("4_2ncxf")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_15n43")
+"texture": ExtResource("5_i5he4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_0mbf6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_mihvp")
+}, {
+"duration": 1.0,
+"texture": null
+}],
+"loop": false,
+"name": &"explosion",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ovyws")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_73ojr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kntke")
 }],
 "loop": true,
 "name": &"fly",
@@ -34,17 +65,40 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_ldyu8"]
 radius = 33.0151
 
-[node name="Enemy 1" type="RigidBody2D"]
-position = Vector2(586, 448)
-scale = Vector2(-1, 1)
+[node name="Enemy 2" type="Area2D" node_paths=PackedStringArray("bullet_spawn")]
+position = Vector2(408, 431)
 collision_layer = 2
+script = ExtResource("1_wqdn3")
+ping_pong_coords = Vector2(200, 700)
+bullet_scene = ExtResource("2_j0eph")
+bullet_spawn = NodePath("Marker2D")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(-1, 1)
 sprite_frames = SubResource("SpriteFrames_pqdxj")
 animation = &"fly"
 autoplay = "fly"
-frame_progress = 0.454609
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(5, 0)
 shape = SubResource("CircleShape2D_ldyu8")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(56, 0)
+
+[node name="Movement System" type="Node2D" parent="."]
+script = ExtResource("9_xcpwp")
+speed = 100.0
+direction = Vector2(-1, 2.08165e-12)
+move = true
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(-60, 0)
+
+[node name="Shoot Timer" type="Timer" parent="."]
+wait_time = 1.5
+autostart = true
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
+[connection signal="timeout" from="Shoot Timer" to="." method="_on_shoot_timer_timeout"]
