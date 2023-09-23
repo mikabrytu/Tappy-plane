@@ -11,6 +11,7 @@ func setup(spawn, direction, layer):
 	global_position = spawn.global_position
 	$"Movement System".direction = direction
 	$Sprite2D.rotation_degrees = 90 * direction.x
+	$VisibleOnScreenNotifier2D.position.x = 30 * -direction.x
 	_parent_layer = layer
 
 
@@ -26,4 +27,8 @@ func _on_body_entered(body):
 		var player = body as Player
 		player.try_kill()
 	
+	queue_free()
+
+
+func _on_visible_on_screen_notifier_2d_screen_exited():
 	queue_free()
