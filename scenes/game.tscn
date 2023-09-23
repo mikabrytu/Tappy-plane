@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://b3umw2325ulo4"]
+[gd_scene load_steps=10 format=3 uid="uid://b3umw2325ulo4"]
 
 [ext_resource type="PackedScene" uid="uid://c3vttq1hvnrva" path="res://scenes/background/background.tscn" id="1_apce2"]
 [ext_resource type="PackedScene" uid="uid://camshuu1rdrdy" path="res://scenes/player/player.tscn" id="2_tpdul"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://cn7fstplsbswa" path="res://scenes/game_hud/game_over.tscn" id="4_x6g24"]
 [ext_resource type="PackedScene" uid="uid://c6xy6r24uceyo" path="res://scenes/power_ups/power_up_controller.tscn" id="4_yuxrx"]
 [ext_resource type="PackedScene" uid="uid://c48cx4oq12s5y" path="res://scenes/game_hud/game_hud.tscn" id="5_5crhm"]
+[ext_resource type="PackedScene" uid="uid://kfn3wi8s5l1m" path="res://scenes/enemies/enemy_controller.tscn" id="5_vf44q"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_u0wns"]
 size = Vector2(521, 41)
@@ -16,11 +17,14 @@ size = Vector2(521, 41)
 [node name="Background" parent="." instance=ExtResource("1_apce2")]
 
 [node name="Player" parent="." instance=ExtResource("2_tpdul")]
-position = Vector2(107, 301)
+position = Vector2(107, 432)
 
 [node name="Obstacle Controller" parent="." instance=ExtResource("3_ncxym")]
 
 [node name="Power Up Controller" parent="." instance=ExtResource("4_yuxrx")]
+
+[node name="Enemy Controller" parent="." node_paths=PackedStringArray("player") instance=ExtResource("5_vf44q")]
+player = NodePath("../Player")
 
 [node name="Ground" type="Area2D" parent="."]
 position = Vector2(0, 871)

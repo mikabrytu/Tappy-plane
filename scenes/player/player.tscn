@@ -1,8 +1,13 @@
-[gd_scene load_steps=12 format=3 uid="uid://camshuu1rdrdy"]
+[gd_scene load_steps=17 format=3 uid="uid://camshuu1rdrdy"]
 
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="1_ejheb"]
+[ext_resource type="Texture2D" uid="uid://um0mq24evkle" path="res://assets/vfx/explosion1.png" id="2_wbixh"]
+[ext_resource type="Texture2D" uid="uid://dxfihscqfhxsr" path="res://assets/vfx/explosion2.png" id="3_affuu"]
 [ext_resource type="AudioStream" uid="uid://gbxx6ge52qex" path="res://assets/audio/engine.mp3" id="3_ityos"]
 [ext_resource type="Texture2D" uid="uid://djgd5tc7ruhhu" path="res://assets/plane/planes_sheet.png" id="3_lp15h"]
+[ext_resource type="Texture2D" uid="uid://4jhiahwne0ma" path="res://assets/vfx/explosion3.png" id="4_0sg7x"]
+[ext_resource type="Texture2D" uid="uid://fdkte077atqx" path="res://assets/vfx/explosion4.png" id="5_0xvib"]
+[ext_resource type="Texture2D" uid="uid://djx3hgsk7t6fp" path="res://assets/vfx/explosion5.png" id="6_gpvar"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_d8n11"]
 atlas = ExtResource("3_lp15h")
@@ -18,6 +23,29 @@ region = Rect2(176, 0, 88, 73)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ohdba"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_wbixh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_affuu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_0sg7x")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_0xvib")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_gpvar")
+}, {
+"duration": 1.0,
+"texture": null
+}],
+"loop": false,
+"name": &"explosion",
+"speed": 12.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_d8n11")
@@ -90,8 +118,6 @@ reset_position_duration = 0.8
 sprite_frames = SubResource("SpriteFrames_ohdba")
 animation = &"fly"
 autoplay = "fly"
-frame = 2
-frame_progress = 0.242805
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(7, 3)

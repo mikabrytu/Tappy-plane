@@ -12,13 +12,10 @@ extends Area2D
 var _target: Node2D
 var _origin: Vector2
 var _can_shoot: bool = true
+var _is_exploding: bool = false
 
 
 # Godot Messages
-
-
-#func _ready():
-#	_attack()
 
 
 func _process(delta):
@@ -52,6 +49,9 @@ func _attack():
 
 
 func _flee():
+	if _is_exploding:
+		return
+	
 	$VisibleOnScreenNotifier2D.position.x = -60
 	$"Movement System".can_move(false)
 	
@@ -82,5 +82,18 @@ func _on_visible_on_screen_notifier_2d_screen_exited():
 
 
 func _on_body_entered(body):
-	print("Enemy dead!")
+	var layer = body.collision_layer
+	var score = 0
+	
+	if layer == 1:
+		score = 3
+	elif layer == 5:
+		score = 1
+	
+	GameManager.increase_score(score)
+	$AnimatedSprite2D.play("explosion")
+	_is_exploding = true
+	
+	await get_tree().create_timer(0.5).timeout
+	
 	queue_free()

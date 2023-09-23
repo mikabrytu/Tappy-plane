@@ -1,22 +1,87 @@
-[gd_scene load_steps=5 format=3 uid="uid://igunalfkxggk"]
+[gd_scene load_steps=17 format=3 uid="uid://igunalfkxggk"]
 
-[ext_resource type="Texture2D" uid="uid://brpcaqm8ux8pa" path="res://assets/power_ups/medalGold.png" id="1_8f4vj"]
 [ext_resource type="Script" path="res://scenes/power_ups/coin.gd" id="1_j52qc"]
+[ext_resource type="Texture2D" uid="uid://coohf78uqcmy5" path="res://assets/power_ups/bronze_1.png" id="2_7tucj"]
 [ext_resource type="AudioStream" uid="uid://cq1p1v7pqoksc" path="res://assets/audio/score.wav" id="3_46vci"]
+[ext_resource type="Texture2D" uid="uid://b0mmhwttjuea2" path="res://assets/power_ups/bronze_2.png" id="3_foc2u"]
+[ext_resource type="Texture2D" uid="uid://iry73usulh84" path="res://assets/power_ups/bronze_3.png" id="4_wskgs"]
+[ext_resource type="Texture2D" uid="uid://cl4q6q45jjay4" path="res://assets/power_ups/bronze_4.png" id="5_k157h"]
+[ext_resource type="Texture2D" uid="uid://yni7chqaowsp" path="res://assets/power_ups/bronze_3_f.png" id="6_2jn5d"]
+[ext_resource type="Texture2D" uid="uid://xblqaq8jna2g" path="res://assets/power_ups/bronze_2_f.png" id="7_v2uk1"]
+[ext_resource type="Texture2D" uid="uid://wy0im888yxie" path="res://assets/vfx/symbol_02.png" id="9_doisj"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ts6kd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_7tucj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_foc2u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_wskgs")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_k157h")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_2jn5d")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_v2uk1")
+}],
+"loop": true,
+"name": &"default",
+"speed": 8.0
+}]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_yko3f"]
-radius = 61.0082
+radius = 41.0122
+
+[sub_resource type="Curve" id="Curve_cmkwm"]
+min_value = -360.0
+max_value = 360.0
+_data = [Vector2(0.00935426, -217.911), 0.0, 1805.95, 0, 0, Vector2(1, 225.557), -125.751, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_56l83"]
+curve = SubResource("Curve_cmkwm")
+
+[sub_resource type="Gradient" id="Gradient_q1tsb"]
+offsets = PackedFloat32Array(0, 0.357724, 0.658537, 1)
+colors = PackedColorArray(0.901961, 0.580392, 0.356863, 0.0784314, 0.901961, 0.580392, 0.356863, 1, 0.901961, 0.580392, 0.227451, 1, 0.901961, 0.580392, 0.227451, 0.0470588)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_257rr"]
+gradient = SubResource("Gradient_q1tsb")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_1ynyu"]
+emission_shape = 6
+emission_ring_axis = Vector3(0, 0, 1)
+emission_ring_height = 1.0
+emission_ring_radius = 30.0
+emission_ring_inner_radius = 15.0
+particle_flag_disable_z = true
+gravity = Vector3(2.08165e-12, -75, 2.08165e-12)
+angular_velocity_curve = SubResource("CurveTexture_56l83")
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+scale_min = 0.05
+scale_max = 0.1
+color_ramp = SubResource("GradientTexture1D_257rr")
+turbulence_enabled = true
 
 [node name="Coin" type="Area2D"]
 collision_layer = 8
 script = ExtResource("1_j52qc")
-speed = 350.0
+speed = 150.0
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_8f4vj")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_ts6kd")
+autoplay = "default"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -2)
+visible = false
 shape = SubResource("CircleShape2D_yko3f")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
@@ -24,6 +89,17 @@ position = Vector2(80, 0)
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_46vci")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 12
+process_material = SubResource("ParticleProcessMaterial_1ynyu")
+texture = ExtResource("9_doisj")
+lifetime = 1.5
+one_shot = true
+speed_scale = 2.0
+randomness = 0.04
+local_coords = true
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

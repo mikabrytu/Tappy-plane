@@ -19,8 +19,8 @@ func get_score() -> int:
 	return _score
 
 
-func increase_score():
-	_score += 1
+func increase_score(amount: int = 1):
+	_score += amount
 	score_updated.emit(_score)
 
 

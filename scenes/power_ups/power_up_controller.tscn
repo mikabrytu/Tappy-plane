@@ -6,7 +6,7 @@
 script = ExtResource("1_44r28")
 spawn_position = NodePath("Marker2D")
 spawn_offset = Vector2(100, 500)
-min_max_timer = Vector2(1, 2.5)
+min_max_timer = Vector2(2, 4)
 
 [node name="Timer" type="Timer" parent="."]
 

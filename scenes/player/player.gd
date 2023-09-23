@@ -16,6 +16,7 @@ signal die
 @export var max_angle: float = -30.0
 
 var _original_gravity: float
+var _is_attacking: bool = false
 
 
 # Godot Messages
@@ -56,8 +57,12 @@ func _fly():
 
 
 func _attack():
+	if _is_attacking:
+		return
+	
 	var reset_position = position
 	
+	_is_attacking = true
 	linear_velocity = Vector2.ZERO
 	gravity_scale = 0
 	apply_central_impulse(Vector2.RIGHT * attack_impulse)
@@ -73,9 +78,21 @@ func _attack():
 func _reset_physics():
 	linear_velocity = Vector2.ZERO
 	gravity_scale = _original_gravity
+	_is_attacking = false
 
 
 func _die():
+	linear_velocity = Vector2.ZERO
+	gravity_scale = 0
+	
+	if $AnimationPlayer.is_playing():
+		$AnimationPlayer.stop()
+		$AnimatedSprite2D.rotation_degrees = 0
+	
+	$AnimatedSprite2D.play("explosion")
+	
+	await get_tree().create_timer(0.5).timeout
+	
 	die.emit()
 	queue_free()
 
@@ -84,7 +101,8 @@ func _die():
 
 
 func try_kill():
-	_die()
+	if not _is_attacking:
+		_die()
 
 
 # Listeners
