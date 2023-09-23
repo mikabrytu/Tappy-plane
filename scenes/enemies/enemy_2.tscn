@@ -66,7 +66,6 @@ animations = [{
 radius = 33.0151
 
 [node name="Enemy 2" type="Area2D" node_paths=PackedStringArray("bullet_spawn")]
-position = Vector2(408, 431)
 collision_layer = 2
 script = ExtResource("1_wqdn3")
 ping_pong_coords = Vector2(200, 700)
