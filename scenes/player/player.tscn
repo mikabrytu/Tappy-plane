@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://camshuu1rdrdy"]
+[gd_scene load_steps=20 format=3 uid="uid://camshuu1rdrdy"]
 
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="1_ejheb"]
 [ext_resource type="Texture2D" uid="uid://um0mq24evkle" path="res://assets/vfx/explosion1.png" id="2_wbixh"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://4jhiahwne0ma" path="res://assets/vfx/explosion3.png" id="4_0sg7x"]
 [ext_resource type="Texture2D" uid="uid://fdkte077atqx" path="res://assets/vfx/explosion4.png" id="5_0xvib"]
 [ext_resource type="Texture2D" uid="uid://djx3hgsk7t6fp" path="res://assets/vfx/explosion5.png" id="6_gpvar"]
+[ext_resource type="Texture2D" uid="uid://yvk2asnqle28" path="res://assets/vfx/broad-2.png" id="8_qgwyv"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_d8n11"]
 atlas = ExtResource("3_lp15h")
@@ -78,6 +79,42 @@ tracks/0/keys = {
 "update": 0,
 "values": [0.0]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AnimatedSprite2D:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CollisionShape2D:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(7, 3)]
+}
 
 [sub_resource type="Animation" id="Animation_saym6"]
 resource_name = "bump_up"
@@ -96,10 +133,93 @@ tracks/0/keys = {
 "values": [0.0, -0.523599, -0.523599, 0.0]
 }
 
+[sub_resource type="Animation" id="Animation_q87lj"]
+resource_name = "attack"
+length = 0.2
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CollisionShape2D:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [Vector2(41, 1), Vector2(7, 3)]
+}
+
+[sub_resource type="Animation" id="Animation_6eqgb"]
+resource_name = "idle"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CollisionShape2D:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(7, 3)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_f2xwf"]
 _data = {
 "RESET": SubResource("Animation_yej0b"),
-"bump_up": SubResource("Animation_saym6")
+"attack": SubResource("Animation_q87lj"),
+"bump_up": SubResource("Animation_saym6"),
+"idle": SubResource("Animation_6eqgb")
 }
 
 [node name="Player" type="RigidBody2D"]
@@ -111,19 +231,26 @@ script = ExtResource("1_ejheb")
 fly_impulse = 500.0
 min_fall_velocity = 100.0
 attack_impulse = 2000.0
-attack_rest_timer = 0.225
+attack_rest_timer = 0.15
 reset_position_duration = 0.8
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+visible = false
 sprite_frames = SubResource("SpriteFrames_ohdba")
 animation = &"fly"
 autoplay = "fly"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
+rotation = 1.5708
+texture = ExtResource("8_qgwyv")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(7, 3)
 shape = SubResource("CircleShape2D_ke2qu")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "idle"
 libraries = {
 "": SubResource("AnimationLibrary_f2xwf")
 }

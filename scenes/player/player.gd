@@ -62,6 +62,8 @@ func _attack():
 	
 	var reset_position = position
 	
+	$AnimationPlayer.play("attack")
+	
 	_is_attacking = true
 	linear_velocity = Vector2.ZERO
 	gravity_scale = 0
@@ -87,6 +89,7 @@ func _die():
 	
 	if $AnimationPlayer.is_playing():
 		$AnimationPlayer.stop()
+		$AnimationPlayer.play("idle")
 		$AnimatedSprite2D.rotation_degrees = 0
 	
 	$AnimatedSprite2D.play("explosion")
