@@ -1,7 +1,8 @@
 class_name Enemy
 extends Area2D
 
-
+@export_category("Target")
+@export var distance: float
 @export_category("Bullet")
 @export var bullet_scene: PackedScene
 @export var bullet_spawn: Marker2D
@@ -56,7 +57,12 @@ func _on_body_entered(body):
 	
 	GameManager.increase_score(score)
 	$AnimatedSprite2D.play("explosion")
+	$CollisionShape2D.set_deferred("disabled", true)
 	is_exploding = true
+	
+	var player = body as Player
+	if player != null:
+		player.try_kill()
 	
 	await get_tree().create_timer(0.5).timeout
 	
