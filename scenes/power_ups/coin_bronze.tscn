@@ -1,35 +1,35 @@
 [gd_scene load_steps=17 format=3 uid="uid://igunalfkxggk"]
 
-[ext_resource type="Script" path="res://scenes/power_ups/coin.gd" id="1_j52qc"]
-[ext_resource type="Texture2D" uid="uid://coohf78uqcmy5" path="res://assets/power_ups/bronze_1.png" id="2_7tucj"]
-[ext_resource type="AudioStream" uid="uid://cq1p1v7pqoksc" path="res://assets/audio/score.wav" id="3_46vci"]
-[ext_resource type="Texture2D" uid="uid://b0mmhwttjuea2" path="res://assets/power_ups/bronze_2.png" id="3_foc2u"]
-[ext_resource type="Texture2D" uid="uid://iry73usulh84" path="res://assets/power_ups/bronze_3.png" id="4_wskgs"]
-[ext_resource type="Texture2D" uid="uid://cl4q6q45jjay4" path="res://assets/power_ups/bronze_4.png" id="5_k157h"]
-[ext_resource type="Texture2D" uid="uid://yni7chqaowsp" path="res://assets/power_ups/bronze_3_f.png" id="6_2jn5d"]
-[ext_resource type="Texture2D" uid="uid://xblqaq8jna2g" path="res://assets/power_ups/bronze_2_f.png" id="7_v2uk1"]
-[ext_resource type="Texture2D" uid="uid://wy0im888yxie" path="res://assets/vfx/symbol_02.png" id="9_doisj"]
+[ext_resource type="Script" path="res://scenes/power_ups/coin.gd" id="1_fxulp"]
+[ext_resource type="Texture2D" uid="uid://coohf78uqcmy5" path="res://assets/power_ups/bronze_1.png" id="2_0low1"]
+[ext_resource type="Texture2D" uid="uid://b0mmhwttjuea2" path="res://assets/power_ups/bronze_2.png" id="3_mejod"]
+[ext_resource type="Texture2D" uid="uid://iry73usulh84" path="res://assets/power_ups/bronze_3.png" id="4_0nqpj"]
+[ext_resource type="Texture2D" uid="uid://cl4q6q45jjay4" path="res://assets/power_ups/bronze_4.png" id="5_qh1gh"]
+[ext_resource type="Texture2D" uid="uid://yni7chqaowsp" path="res://assets/power_ups/bronze_3_f.png" id="6_aptaw"]
+[ext_resource type="Texture2D" uid="uid://xblqaq8jna2g" path="res://assets/power_ups/bronze_2_f.png" id="7_asdit"]
+[ext_resource type="AudioStream" uid="uid://cq1p1v7pqoksc" path="res://assets/audio/score.wav" id="8_i0vd5"]
+[ext_resource type="Texture2D" uid="uid://wy0im888yxie" path="res://assets/vfx/symbol_02.png" id="9_u6v0b"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ts6kd"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_7tucj")
+"texture": ExtResource("2_0low1")
 }, {
 "duration": 1.0,
-"texture": ExtResource("3_foc2u")
+"texture": ExtResource("3_mejod")
 }, {
 "duration": 1.0,
-"texture": ExtResource("4_wskgs")
+"texture": ExtResource("4_0nqpj")
 }, {
 "duration": 1.0,
-"texture": ExtResource("5_k157h")
+"texture": ExtResource("5_qh1gh")
 }, {
 "duration": 1.0,
-"texture": ExtResource("6_2jn5d")
+"texture": ExtResource("6_aptaw")
 }, {
 "duration": 1.0,
-"texture": ExtResource("7_v2uk1")
+"texture": ExtResource("7_asdit")
 }],
 "loop": true,
 "name": &"default",
@@ -37,7 +37,7 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_yko3f"]
-radius = 41.0122
+radius = 49.0
 
 [sub_resource type="Curve" id="Curve_cmkwm"]
 min_value = -360.0
@@ -59,8 +59,8 @@ gradient = SubResource("Gradient_q1tsb")
 emission_shape = 6
 emission_ring_axis = Vector3(0, 0, 1)
 emission_ring_height = 1.0
-emission_ring_radius = 30.0
-emission_ring_inner_radius = 15.0
+emission_ring_radius = 60.0
+emission_ring_inner_radius = 20.0
 particle_flag_disable_z = true
 gravity = Vector3(2.08165e-12, -75, 2.08165e-12)
 angular_velocity_curve = SubResource("CurveTexture_56l83")
@@ -73,28 +73,28 @@ turbulence_enabled = true
 
 [node name="Coin" type="Area2D"]
 collision_layer = 8
-script = ExtResource("1_j52qc")
+script = ExtResource("1_fxulp")
 speed = 150.0
+value = 1
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_ts6kd")
 autoplay = "default"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
 shape = SubResource("CircleShape2D_yko3f")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 position = Vector2(80, 0)
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("3_46vci")
+stream = ExtResource("8_i0vd5")
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
 emitting = false
-amount = 12
+amount = 16
 process_material = SubResource("ParticleProcessMaterial_1ynyu")
-texture = ExtResource("9_doisj")
+texture = ExtResource("9_u6v0b")
 lifetime = 1.5
 one_shot = true
 speed_scale = 2.0

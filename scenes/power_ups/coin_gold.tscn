@@ -1,0 +1,106 @@
+[gd_scene load_steps=17 format=3 uid="uid://otoe4ot8xyt2"]
+
+[ext_resource type="Script" path="res://scenes/power_ups/coin.gd" id="1_lkkl6"]
+[ext_resource type="Texture2D" uid="uid://dg2bc1xtotm1r" path="res://assets/power_ups/gold_1.png" id="2_3h07m"]
+[ext_resource type="Texture2D" uid="uid://dvq8rl33apt1y" path="res://assets/power_ups/gold_2.png" id="3_agkyf"]
+[ext_resource type="Texture2D" uid="uid://by8fkgufy80k3" path="res://assets/power_ups/gold_3.png" id="4_udq56"]
+[ext_resource type="Texture2D" uid="uid://ccmjw2br3mws1" path="res://assets/power_ups/gold_4.png" id="5_wfx6o"]
+[ext_resource type="Texture2D" uid="uid://b3u4fd80ibjnb" path="res://assets/power_ups/gold_3_f.png" id="6_r13yt"]
+[ext_resource type="Texture2D" uid="uid://gk6wmw0tyejf" path="res://assets/power_ups/gold_2_f.png" id="7_hhgwo"]
+[ext_resource type="AudioStream" uid="uid://cq1p1v7pqoksc" path="res://assets/audio/score.wav" id="8_qa7p7"]
+[ext_resource type="Texture2D" uid="uid://wy0im888yxie" path="res://assets/vfx/symbol_02.png" id="9_jphdk"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ts6kd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_3h07m")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_agkyf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_udq56")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_wfx6o")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_r13yt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_hhgwo")
+}],
+"loop": true,
+"name": &"default",
+"speed": 8.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_yko3f"]
+radius = 49.0
+
+[sub_resource type="Curve" id="Curve_gxtvt"]
+min_value = -360.0
+max_value = 360.0
+_data = [Vector2(0.00935426, -217.911), 0.0, 1805.95, 0, 0, Vector2(1, 225.557), -125.751, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_oh4tw"]
+curve = SubResource("Curve_gxtvt")
+
+[sub_resource type="Gradient" id="Gradient_xso5t"]
+offsets = PackedFloat32Array(0, 0.357724, 0.658537, 1)
+colors = PackedColorArray(1, 0.772549, 0.105882, 0.0784314, 1, 0.772549, 0.105882, 1, 0.992157, 0.827451, 0.27451, 1, 0.992157, 0.827451, 0.27451, 0.0470588)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_ye6i1"]
+gradient = SubResource("Gradient_xso5t")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_j556k"]
+emission_shape = 6
+emission_ring_axis = Vector3(0, 0, 1)
+emission_ring_height = 1.0
+emission_ring_radius = 60.0
+emission_ring_inner_radius = 20.0
+particle_flag_disable_z = true
+gravity = Vector3(2.08165e-12, -75, 2.08165e-12)
+angular_velocity_curve = SubResource("CurveTexture_oh4tw")
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+scale_min = 0.05
+scale_max = 0.1
+color_ramp = SubResource("GradientTexture1D_ye6i1")
+turbulence_enabled = true
+
+[node name="Coin Silver" type="Area2D"]
+collision_layer = 8
+script = ExtResource("1_lkkl6")
+speed = 150.0
+value = 3
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_ts6kd")
+autoplay = "default"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource("CircleShape2D_yko3f")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(80, 0)
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_qa7p7")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 16
+process_material = SubResource("ParticleProcessMaterial_j556k")
+texture = ExtResource("9_jphdk")
+lifetime = 1.5
+one_shot = true
+speed_scale = 2.0
+randomness = 0.04
+local_coords = true
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
