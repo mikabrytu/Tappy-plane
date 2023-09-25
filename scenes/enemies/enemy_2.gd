@@ -24,9 +24,7 @@ func _process(delta):
 		$"Movement System".direction = UP
 	
 	if target != null:
-		if (not _is_shooting 
-			and (global_position.x - target.global_position.x) < distance
-		):
+		if not _is_shooting and is_close_to_target():
 			_is_shooting = true
 			shoot()
 			$"Shoot Timer".start()

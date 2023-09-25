@@ -39,6 +39,13 @@ func shoot():
 	b.setup(bullet_spawn, Vector2.LEFT, collision_layer)
 
 
+func is_close_to_target() -> bool:
+	if target == null:
+		return false
+	
+	return (global_position.x - target.global_position.x) < distance
+
+
 # Listeners
 
 

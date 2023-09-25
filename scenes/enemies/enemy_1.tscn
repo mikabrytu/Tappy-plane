@@ -69,9 +69,9 @@ radius = 33.0151
 position = Vector2(2.08165e-12, 2.08165e-12)
 collision_layer = 2
 script = ExtResource("1_11hyw")
-distance = 200.0
 height_offset = Vector2(-25, 25)
 flee_duration = 1.5
+distance = 200.0
 bullet_scene = ExtResource("2_y6rq7")
 bullet_spawn = NodePath("Marker2D")
 

@@ -2,7 +2,6 @@ class_name Enemy1
 extends Enemy
 
 
-@export var distance: float
 @export var height_offset: Vector2
 @export var flee_duration: float
 
@@ -17,7 +16,7 @@ func _process(delta):
 			global_position.y + height_offset.y,
 		)
 		
-		if (global_position.x - target.global_position.x) < distance:
+		if is_close_to_target():
 			if (
 				target.global_position.y > offset.x 
 				and target.global_position.y < offset.y
