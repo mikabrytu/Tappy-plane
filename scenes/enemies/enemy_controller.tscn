@@ -1,12 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://kfn3wi8s5l1m"]
+[gd_scene load_steps=5 format=3 uid="uid://kfn3wi8s5l1m"]
 
 [ext_resource type="Script" path="res://scenes/enemies/enemy_controller.gd" id="1_6bdn7"]
 [ext_resource type="PackedScene" uid="uid://d3b5j5id6m0l0" path="res://scenes/enemies/enemy_1.tscn" id="2_rv8i7"]
 [ext_resource type="PackedScene" uid="uid://cktfypuviesm0" path="res://scenes/enemies/enemy_2.tscn" id="3_qp2tv"]
+[ext_resource type="PackedScene" uid="uid://defr2au4pv427" path="res://scenes/enemies/enemy_3.tscn" id="4_n0r7b"]
 
 [node name="Enemy Controller" type="Node2D" node_paths=PackedStringArray("spawn_points")]
 script = ExtResource("1_6bdn7")
-enemies = Array[PackedScene]([ExtResource("2_rv8i7"), ExtResource("3_qp2tv")])
+enemies = Array[PackedScene]([ExtResource("2_rv8i7"), ExtResource("3_qp2tv"), ExtResource("4_n0r7b")])
 spawn_points = [NodePath("Spawn Points/Marker2D 1"), NodePath("Spawn Points/Marker2D 2"), NodePath("Spawn Points/Marker2D 3"), NodePath("Spawn Points/Marker2D 4"), NodePath("Spawn Points/Marker2D 5")]
 
 [node name="Start Spawn Timer" type="Timer" parent="."]
