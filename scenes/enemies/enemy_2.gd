@@ -14,14 +14,14 @@ const DOWN = Vector2(-0.25, 1)
 
 
 func _ready():
-	$"Movement System".direction = DOWN
+	$"Movement System".update_direction(DOWN)
 
 
 func _process(_delta):
 	if position.y < ping_pong_coords.x:
-		$"Movement System".direction = DOWN
+		$"Movement System".update_direction(DOWN)
 	if position.y > ping_pong_coords.y:
-		$"Movement System".direction = UP
+		$"Movement System".update_direction(UP)
 	
 	if target != null:
 		if not _is_shooting and is_close_to_target():

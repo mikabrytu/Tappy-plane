@@ -29,6 +29,10 @@ func _process(delta):
 # Public API
 
 
+func update_direction(direction):
+	_final_direction = direction
+
+
 func move_towards(target: Node2D):
 	set_follow_target(true)
 	_target = target

@@ -69,7 +69,7 @@ radius = 33.0151
 collision_layer = 2
 script = ExtResource("1_wqdn3")
 ping_pong_coords = Vector2(200, 700)
-distance = 280.0
+distance = 350.0
 bullet_scene = ExtResource("2_j0eph")
 bullet_spawn = NodePath("Marker2D")
 
