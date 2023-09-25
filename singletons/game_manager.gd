@@ -2,6 +2,7 @@ extends Node
 
 
 signal score_updated(score)
+signal streak_updated(streak)
 
 const GAME_SCENE: PackedScene = preload("res://scenes/game.tscn")
 const MENU_SCENE: PackedScene = preload("res://scenes/menu/menu.tscn")
@@ -9,6 +10,18 @@ const MENU_SCENE: PackedScene = preload("res://scenes/menu/menu.tscn")
 const SAVE_FILE_PATH = "user://savedata.save"
 
 var _score: int
+var _streak: int
+
+
+# Godot Messages
+
+
+func _ready():
+	reset_score()
+	reset_streak()
+
+
+# Public API
 
 
 func load_scene(scene: PackedScene) -> void:
@@ -43,3 +56,14 @@ func get_highscore() -> int:
 	file.close()
 	
 	return highscore
+
+
+func increase_streak():
+	_streak += 1
+	streak_updated.emit(_streak)
+	print("Current Streak: " + str(_streak))
+
+
+func reset_streak():
+	print("Streak reset!")
+	_streak = 0
