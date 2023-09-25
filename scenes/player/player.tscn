@@ -116,23 +116,6 @@ tracks/3/keys = {
 "values": [Vector2(7, 3)]
 }
 
-[sub_resource type="Animation" id="Animation_saym6"]
-resource_name = "bump_up"
-length = 0.8
-step = 0.01
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("AnimatedSprite2D:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.15, 0.25, 0.8),
-"transitions": PackedFloat32Array(1, 3.24901, 2.37841, 0.277393),
-"update": 0,
-"values": [0.0, -0.523599, -0.523599, 0.0]
-}
-
 [sub_resource type="Animation" id="Animation_q87lj"]
 resource_name = "attack"
 length = 0.2
@@ -172,6 +155,23 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [Vector2(41, 1), Vector2(7, 3)]
+}
+
+[sub_resource type="Animation" id="Animation_saym6"]
+resource_name = "bump_up"
+length = 0.8
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.25, 0.8),
+"transitions": PackedFloat32Array(1, 3.24901, 2.37841, 0.277393),
+"update": 0,
+"values": [0.0, -0.523599, -0.523599, 0.0]
 }
 
 [sub_resource type="Animation" id="Animation_6eqgb"]
@@ -235,7 +235,6 @@ attack_rest_timer = 0.15
 reset_position_duration = 0.8
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-visible = false
 sprite_frames = SubResource("SpriteFrames_ohdba")
 animation = &"fly"
 autoplay = "fly"

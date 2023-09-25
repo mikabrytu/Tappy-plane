@@ -9,7 +9,7 @@ extends Enemy
 # Godot Messages
 
 
-func _process(delta):
+func _process(_delta):
 	if target != null:
 		var offset = Vector2( 
 			global_position.y + height_offset.x, 

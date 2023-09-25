@@ -17,7 +17,7 @@ func _ready():
 	$"Movement System".direction = DOWN
 
 
-func _process(delta):
+func _process(_delta):
 	if position.y < ping_pong_coords.x:
 		$"Movement System".direction = DOWN
 	if position.y > ping_pong_coords.y:
