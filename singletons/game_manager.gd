@@ -61,9 +61,7 @@ func get_highscore() -> int:
 func increase_streak():
 	_streak += 1
 	streak_updated.emit(_streak)
-	print("Current Streak: " + str(_streak))
 
 
 func reset_streak():
-	print("Streak reset!")
 	_streak = 0
