@@ -68,7 +68,7 @@ radius = 33.0151
 collision_layer = 2
 script = ExtResource("1_ytcrk")
 attack_speed = 800.0
-distance = 300.0
+distance = 200.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(-1, 1)
