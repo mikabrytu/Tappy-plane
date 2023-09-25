@@ -15,7 +15,11 @@ one_shot = true
 autostart = true
 
 [node name="Spawn Timer" type="Timer" parent="."]
-wait_time = 3.0
+wait_time = 5.0
+
+[node name="Dificulty Timer" type="Timer" parent="."]
+wait_time = 20.0
+one_shot = true
 
 [node name="Spawn Points" type="Node2D" parent="."]
 position = Vector2(638, 427)
@@ -37,3 +41,4 @@ position = Vector2(2.08165e-12, 200)
 
 [connection signal="timeout" from="Start Spawn Timer" to="." method="_on_start_spawn_timer_timeout"]
 [connection signal="timeout" from="Spawn Timer" to="." method="_on_spawn_timer_timeout"]
+[connection signal="timeout" from="Dificulty Timer" to="." method="_on_dificulty_timer_timeout"]
