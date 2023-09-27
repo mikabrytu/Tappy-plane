@@ -70,7 +70,7 @@ radius = 33.0151
 [node name="Enemy 2" type="Area2D" node_paths=PackedStringArray("bullet_spawn")]
 collision_layer = 2
 script = ExtResource("1_wqdn3")
-ping_pong_coords = Vector2(200, 700)
+ping_pong_coords = Vector2(250, 650)
 score = 8
 distance = 350.0
 bullet_scene = ExtResource("2_j0eph")
@@ -99,7 +99,7 @@ move = true
 position = Vector2(-60, 0)
 
 [node name="Shoot Timer" type="Timer" parent="."]
-wait_time = 1.5
+wait_time = 1.2
 
 [node name="Floating Score" parent="." instance=ExtResource("10_54i46")]
 offset_left = -24.0

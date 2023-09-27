@@ -22,6 +22,8 @@ position = Vector2(107, 336)
 [node name="Obstacle Controller" parent="." instance=ExtResource("3_ncxym")]
 
 [node name="Power Up Controller" parent="." instance=ExtResource("4_yuxrx")]
+spawn_offset = Vector2(200, 650)
+min_max_timer = Vector2(3, 6)
 
 [node name="Enemy Controller" parent="." node_paths=PackedStringArray("player") instance=ExtResource("5_vf44q")]
 player = NodePath("../Player")

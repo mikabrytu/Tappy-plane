@@ -107,6 +107,7 @@ func _die():
 	
 	$"Player Spritesheet".play("explosion")
 	$Death.play()
+	$CollisionShape2D.set_deferred("disabled", true)
 	
 	await get_tree().create_timer(1.35).timeout
 	

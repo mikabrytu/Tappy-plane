@@ -16,7 +16,7 @@ one_shot = true
 autostart = true
 
 [node name="Spawn Timer" type="Timer" parent="."]
-wait_time = 5.0
+wait_time = 3.0
 
 [node name="Dificulty Timer" type="Timer" parent="."]
 wait_time = 20.0
