@@ -17,7 +17,7 @@ size = Vector2(521, 41)
 [node name="Background" parent="." instance=ExtResource("1_apce2")]
 
 [node name="Player" parent="." instance=ExtResource("2_tpdul")]
-position = Vector2(107, 432)
+position = Vector2(107, 336)
 
 [node name="Obstacle Controller" parent="." instance=ExtResource("3_ncxym")]
 

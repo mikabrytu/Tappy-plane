@@ -7,6 +7,7 @@ signal die
 @export_category("Fly")
 @export var fly_impulse: float = 750.0
 @export var min_fall_velocity: float = 300.0
+@export var max_height: float = 100.0
 @export_category("Attack")
 @export var attack_impulse: float = 750
 @export var attack_rest_timer: float = 0.5
@@ -45,7 +46,10 @@ func _process(_delta):
 
 
 func _fly():
-	if (linear_velocity.y < min_fall_velocity):
+	if linear_velocity.y < min_fall_velocity:
+		return
+	
+	if global_position.y < max_height:
 		return
 	
 	linear_velocity = Vector2.ZERO
