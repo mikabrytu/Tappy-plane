@@ -44,6 +44,8 @@ shape = SubResource("RectangleShape2D_u0wns")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 script = ExtResource("4_342bl")
+punch_strength = 1.25
+punch_duration = 0.3
 
 [node name="Game Hud" parent="CanvasLayer" instance=ExtResource("5_5crhm")]
 
