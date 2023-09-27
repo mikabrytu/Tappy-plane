@@ -30,7 +30,12 @@ func _set_game_over_hud():
 	$"Game Over/AudioStreamPlayer".play()
 	
 	$"Game Hud".hide()
+	$"Game Over/Restart".hide()
 	$"Game Over".show()
+	
+	await get_tree().create_timer(1.5).timeout
+	
+	$"Game Over/Restart".show()
 
 
 # Listeners
