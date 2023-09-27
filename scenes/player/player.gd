@@ -90,9 +90,9 @@ func _die():
 	if $AnimationPlayer.is_playing():
 		$AnimationPlayer.stop()
 		$AnimationPlayer.play("idle")
-		$AnimatedSprite2D.rotation_degrees = 0
+		$"Player Spritesheet".rotation_degrees = 0
 	
-	$AnimatedSprite2D.play("explosion")
+	$"Player Spritesheet".play("explosion")
 	
 	await get_tree().create_timer(0.5).timeout
 	
