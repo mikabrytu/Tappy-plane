@@ -6,7 +6,7 @@ signal collected
 @export var spawn_position: Marker2D
 @export var spawn_offset = Vector2(100.0, 700.0)
 @export var min_max_timer = Vector2(2.0, 5.0)
-@export var streak_changer: int = 5
+@export var streak_threshold = Vector2(10, 30)
 
 var _power_ups: Array = [
 	preload("res://scenes/power_ups/coin_bronze.tscn"),
@@ -66,11 +66,11 @@ func _on_power_up_missed():
 
 
 func _on_streak_updated(streak):
-	if streak >= (streak_changer * 2):
+	if streak >= (streak_threshold.y * 2):
 		current_pu = _power_ups[2]
 		return
 	
-	if streak >= streak_changer:
+	if streak >= streak_threshold.x:
 		current_pu = _power_ups[1]
 		return
 	

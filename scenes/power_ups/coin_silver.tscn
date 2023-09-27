@@ -75,7 +75,7 @@ turbulence_enabled = true
 collision_layer = 8
 script = ExtResource("1_o4l6q")
 speed = 150.0
-value = 2
+value = 3
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_ts6kd")

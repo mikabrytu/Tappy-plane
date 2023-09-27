@@ -71,11 +71,11 @@ scale_max = 0.1
 color_ramp = SubResource("GradientTexture1D_ye6i1")
 turbulence_enabled = true
 
-[node name="Coin Silver" type="Area2D"]
+[node name="Coin Gold" type="Area2D"]
 collision_layer = 8
 script = ExtResource("1_lkkl6")
 speed = 150.0
-value = 3
+value = 5
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_ts6kd")

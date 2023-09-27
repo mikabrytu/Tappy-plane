@@ -3,6 +3,7 @@ extends Node
 
 signal score_updated(score)
 signal streak_updated(streak)
+signal streak_reset
 
 const GAME_SCENE: PackedScene = preload("res://scenes/game.tscn")
 const MENU_SCENE: PackedScene = preload("res://scenes/menu/menu.tscn")
@@ -65,3 +66,4 @@ func increase_streak():
 
 func reset_streak():
 	_streak = 0
+	streak_reset.emit()
