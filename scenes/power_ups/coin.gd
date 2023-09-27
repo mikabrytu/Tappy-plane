@@ -7,6 +7,8 @@ signal missed
 @export var speed: float = 100.0
 @export var value: int
 
+var collected: bool = false
+
 
 # Godot Messages
 
@@ -19,6 +21,9 @@ func _process(delta):
 
 
 func _on_visible_on_screen_notifier_2d_screen_exited():
+	if collected:
+		return
+	
 	missed.emit()
 	queue_free()
 
@@ -31,6 +36,7 @@ func _on_body_entered(_body):
 	
 	GameManager.increase_score(value)
 	hit.emit()
+	collected = true
 	
 	await get_tree().create_timer(1.5).timeout
 	

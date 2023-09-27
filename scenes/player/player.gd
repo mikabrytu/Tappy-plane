@@ -106,9 +106,11 @@ func _die():
 		$"Player Spritesheet".rotation_degrees = 0
 	
 	$"Player Spritesheet".play("explosion")
+	$Death.play()
 	
-	await get_tree().create_timer(0.5).timeout
+	await get_tree().create_timer(1.35).timeout
 	
+	GameManager.reset_streak()
 	die.emit()
 	queue_free()
 

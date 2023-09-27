@@ -58,6 +58,7 @@ func _on_body_entered(body):
 	var layer = body.collision_layer
 	
 	GameManager.increase_score(score if layer == 1 else 1)
+	$AudioStreamPlayer.play()
 	$AnimatedSprite2D.play("explosion")
 	$CollisionShape2D.set_deferred("disabled", true)
 	is_exploding = true

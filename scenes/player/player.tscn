@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://camshuu1rdrdy"]
+[gd_scene load_steps=21 format=3 uid="uid://camshuu1rdrdy"]
 
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="1_ejheb"]
 [ext_resource type="Texture2D" uid="uid://um0mq24evkle" path="res://assets/vfx/explosion1.png" id="2_wbixh"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://fdkte077atqx" path="res://assets/vfx/explosion4.png" id="5_0xvib"]
 [ext_resource type="Texture2D" uid="uid://djx3hgsk7t6fp" path="res://assets/vfx/explosion5.png" id="6_gpvar"]
 [ext_resource type="Texture2D" uid="uid://yvk2asnqle28" path="res://assets/vfx/broad-2.png" id="8_qgwyv"]
+[ext_resource type="AudioStream" uid="uid://bk2j614tfqfda" path="res://assets/audio/game_over.wav" id="10_xnvca"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_d8n11"]
 atlas = ExtResource("3_lp15h")
@@ -329,6 +330,9 @@ libraries = {
 "": SubResource("AnimationLibrary_f2xwf")
 }
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+[node name="Engine" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_ityos")
 autoplay = true
+
+[node name="Death" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_xnvca")

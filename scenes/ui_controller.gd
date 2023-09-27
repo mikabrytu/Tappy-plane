@@ -27,7 +27,6 @@ func _set_game_hud():
 
 func _set_game_over_hud():
 	$"Game Over/Score".text = "Score: " + str(GameManager.get_score())
-	$"Game Over/AudioStreamPlayer".play()
 	
 	$"Game Hud".hide()
 	$"Game Over/Restart".hide()

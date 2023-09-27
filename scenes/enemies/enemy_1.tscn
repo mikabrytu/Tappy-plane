@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://d3b5j5id6m0l0"]
+[gd_scene load_steps=17 format=3 uid="uid://d3b5j5id6m0l0"]
 
 [ext_resource type="Script" path="res://scenes/enemies/enemy_1.gd" id="1_11hyw"]
 [ext_resource type="Texture2D" uid="uid://baa7blp3q6yu" path="res://assets/plane/planes.png" id="1_y4e07"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://brvp7mx06e6v6" path="res://assets/vfx/explosionSmoke4.png" id="6_gmg87"]
 [ext_resource type="Texture2D" uid="uid://grv4r7utu3sw" path="res://assets/vfx/explosionSmoke5.png" id="7_2o318"]
 [ext_resource type="PackedScene" uid="uid://bti2lopb4idqu" path="res://scenes/ui/floating_score.tscn" id="10_m1men"]
+[ext_resource type="AudioStream" uid="uid://81dhuysfyql0" path="res://assets/audio/enemy_death.mp3" id="11_yqhsp"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_icv44"]
 atlas = ExtResource("1_y4e07")
@@ -104,6 +105,9 @@ offset_left = -22.0
 offset_top = -26.0
 offset_right = 24.0
 offset_bottom = 34.0
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("11_yqhsp")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
