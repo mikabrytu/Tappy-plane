@@ -73,7 +73,16 @@ func _attack():
 	
 	reset_position.y = position.y
 	var tween = create_tween()
-	tween.tween_property(self, "position", reset_position, reset_position_duration)
+	tween.tween_property(
+		self, 
+		"position", 
+		reset_position, 
+		reset_position_duration,
+	).set_trans(
+		Tween.TRANS_SINE
+	).set_ease(
+		Tween.EASE_OUT
+	)
 	tween.tween_callback(_reset_physics)
 
 
