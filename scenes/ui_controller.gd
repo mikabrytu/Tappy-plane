@@ -1,6 +1,11 @@
 extends CanvasLayer
 
 
+@export_category("Tween values")
+@export var punch_strength: float
+@export var punch_duration: float
+
+
 # Godot Messages
 
 
@@ -42,4 +47,12 @@ func _on_retry_pressed():
 
 
 func _on_score_updated(score):
+	var punch = create_tween().set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+	punch.tween_property(
+		$"Game Hud/Score", 
+		"scale", 
+		Vector2.ONE, 
+		punch_duration
+	).from(Vector2.ONE * punch_strength)
+	
 	$"Game Hud/Score".text = "Score: " + str(score)
