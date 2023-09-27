@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://defr2au4pv427"]
+[gd_scene load_steps=15 format=3 uid="uid://defr2au4pv427"]
 
 [ext_resource type="Script" path="res://scenes/enemies/enemy_3.gd" id="1_ytcrk"]
 [ext_resource type="Texture2D" uid="uid://c2k8s34g30h8b" path="res://assets/vfx/explosionSmoke1.png" id="3_ypsj0"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://grv4r7utu3sw" path="res://assets/vfx/explosionSmoke5.png" id="7_nisn2"]
 [ext_resource type="Texture2D" uid="uid://baa7blp3q6yu" path="res://assets/plane/planes.png" id="8_0n46w"]
 [ext_resource type="Script" path="res://systems/move.gd" id="9_42ukn"]
+[ext_resource type="PackedScene" uid="uid://bti2lopb4idqu" path="res://scenes/ui/floating_score.tscn" id="9_ha3cf"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_het2j"]
 atlas = ExtResource("8_0n46w")
@@ -68,6 +69,7 @@ radius = 33.0151
 collision_layer = 2
 script = ExtResource("1_ytcrk")
 attack_speed = 800.0
+score = 5
 distance = 200.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -91,6 +93,11 @@ move = true
 
 [node name="Marker2D" type="Marker2D" parent="."]
 position = Vector2(-60, 0)
+
+[node name="Floating Score" parent="." instance=ExtResource("9_ha3cf")]
+offset_left = -23.0
+offset_top = -24.0
+offset_right = 23.0
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

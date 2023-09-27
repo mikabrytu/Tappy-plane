@@ -7,7 +7,7 @@
 
 [node name="Enemy Controller" type="Node2D" node_paths=PackedStringArray("spawn_points")]
 script = ExtResource("1_6bdn7")
-enemies = Array[PackedScene]([ExtResource("2_rv8i7"), ExtResource("3_qp2tv"), ExtResource("4_n0r7b")])
+enemies = Array[PackedScene]([ExtResource("2_rv8i7"), ExtResource("4_n0r7b"), ExtResource("3_qp2tv")])
 spawn_points = [NodePath("Spawn Points/Marker2D 1"), NodePath("Spawn Points/Marker2D 2"), NodePath("Spawn Points/Marker2D 3"), NodePath("Spawn Points/Marker2D 4"), NodePath("Spawn Points/Marker2D 5")]
 
 [node name="Start Spawn Timer" type="Timer" parent="."]

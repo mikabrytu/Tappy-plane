@@ -1,6 +1,7 @@
 class_name Enemy
 extends Area2D
 
+@export var score: int
 @export_category("Target")
 @export var distance: float
 @export_category("Bullet")
@@ -55,17 +56,14 @@ func _on_visible_on_screen_notifier_2d_screen_exited():
 
 func _on_body_entered(body):
 	var layer = body.collision_layer
-	var score = 0
 	
-	if layer == 1:
-		score = 3
-	elif layer == 5:
-		score = 1
-	
-	GameManager.increase_score(score)
+	GameManager.increase_score(score if layer == 1 else 1)
 	$AnimatedSprite2D.play("explosion")
 	$CollisionShape2D.set_deferred("disabled", true)
 	is_exploding = true
+	
+	if layer == 1:
+		$"Floating Score".play(score)
 	
 	var player = body as Player
 	if player != null:

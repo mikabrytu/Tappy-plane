@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://d3b5j5id6m0l0"]
+[gd_scene load_steps=16 format=3 uid="uid://d3b5j5id6m0l0"]
 
 [ext_resource type="Script" path="res://scenes/enemies/enemy_1.gd" id="1_11hyw"]
 [ext_resource type="Texture2D" uid="uid://baa7blp3q6yu" path="res://assets/plane/planes.png" id="1_y4e07"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://dnyv4kjhwurk3" path="res://assets/vfx/explosionSmoke3.png" id="5_xvdns"]
 [ext_resource type="Texture2D" uid="uid://brvp7mx06e6v6" path="res://assets/vfx/explosionSmoke4.png" id="6_gmg87"]
 [ext_resource type="Texture2D" uid="uid://grv4r7utu3sw" path="res://assets/vfx/explosionSmoke5.png" id="7_2o318"]
+[ext_resource type="PackedScene" uid="uid://bti2lopb4idqu" path="res://scenes/ui/floating_score.tscn" id="10_m1men"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_icv44"]
 atlas = ExtResource("1_y4e07")
@@ -71,6 +72,7 @@ collision_layer = 2
 script = ExtResource("1_11hyw")
 height_offset = Vector2(-25, 25)
 flee_duration = 1.5
+score = 3
 distance = 200.0
 bullet_scene = ExtResource("2_y6rq7")
 bullet_spawn = NodePath("Marker2D")
@@ -78,10 +80,8 @@ bullet_spawn = NodePath("Marker2D")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(-1, 1)
 sprite_frames = SubResource("SpriteFrames_pqdxj")
-animation = &"explosion"
+animation = &"fly"
 autoplay = "fly"
-frame = 5
-frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(5, 0)
@@ -98,6 +98,12 @@ move = true
 
 [node name="Marker2D" type="Marker2D" parent="."]
 position = Vector2(-60, 0)
+
+[node name="Floating Score" parent="." instance=ExtResource("10_m1men")]
+offset_left = -22.0
+offset_top = -26.0
+offset_right = 24.0
+offset_bottom = 34.0
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

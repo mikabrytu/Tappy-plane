@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://cktfypuviesm0"]
+[gd_scene load_steps=16 format=3 uid="uid://cktfypuviesm0"]
 
 [ext_resource type="Texture2D" uid="uid://baa7blp3q6yu" path="res://assets/plane/planes.png" id="1_0533x"]
 [ext_resource type="Script" path="res://scenes/enemies/enemy_2.gd" id="1_wqdn3"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://brvp7mx06e6v6" path="res://assets/vfx/explosionSmoke4.png" id="6_0mbf6"]
 [ext_resource type="Texture2D" uid="uid://grv4r7utu3sw" path="res://assets/vfx/explosionSmoke5.png" id="7_mihvp"]
 [ext_resource type="Script" path="res://systems/move.gd" id="9_xcpwp"]
+[ext_resource type="PackedScene" uid="uid://bti2lopb4idqu" path="res://scenes/ui/floating_score.tscn" id="10_54i46"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ovyws"]
 atlas = ExtResource("1_0533x")
@@ -69,6 +70,7 @@ radius = 33.0151
 collision_layer = 2
 script = ExtResource("1_wqdn3")
 ping_pong_coords = Vector2(200, 700)
+score = 8
 distance = 350.0
 bullet_scene = ExtResource("2_j0eph")
 bullet_spawn = NodePath("Marker2D")
@@ -97,6 +99,12 @@ position = Vector2(-60, 0)
 
 [node name="Shoot Timer" type="Timer" parent="."]
 wait_time = 1.5
+
+[node name="Floating Score" parent="." instance=ExtResource("10_54i46")]
+offset_left = -24.0
+offset_top = -21.0
+offset_right = 22.0
+offset_bottom = 39.0
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
