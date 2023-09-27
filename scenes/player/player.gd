@@ -67,6 +67,7 @@ func _attack():
 	var reset_position = position
 	
 	$AnimationPlayer.play("attack")
+	$"Attack Sound Timer".start()
 	
 	_is_attacking = true
 	linear_velocity = Vector2.ZERO
@@ -133,3 +134,7 @@ func _on_obstacle_collision_entered():
 
 func _on_ground_entered(_body):
 	_die()
+
+
+func _on_attack_sound_timer_timeout():
+	$Attack.play()

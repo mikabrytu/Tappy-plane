@@ -112,4 +112,5 @@ uppercase = true
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_xvwfp")
+volume_db = -5.0
 autoplay = true
