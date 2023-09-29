@@ -5,10 +5,12 @@ extends Control
 
 
 func _ready():
-	$"Highscore Count".text = str(GameManager.get_highscore())
+	$"Score Line/Highscore Count".text = str(GameManager.get_highscore())
 
 
-func _input(event):
-	if event is InputEventMouseButton or event is InputEventScreenTouch:
-		if event.is_pressed():
-			GameManager.load_scene(GameManager.GAME_SCENE)
+func _on_play_pressed():
+	GameManager.load_scene(GameManager.GAME_SCENE)
+
+
+func _on_highscore_pressed():
+	GameManager.load_scene(GameManager.HIGHSCORE_SCENE)
