@@ -7,6 +7,7 @@ signal streak_reset
 
 const GAME_SCENE: PackedScene = preload("res://scenes/game.tscn")
 const MENU_SCENE: PackedScene = preload("res://scenes/menu/menu.tscn")
+const HIGHSCORE_SCENE: PackedScene = preload("res://scenes/highscores/highscores.tscn")
 
 const SAVE_FILE_PATH = "user://savedata.save"
 
