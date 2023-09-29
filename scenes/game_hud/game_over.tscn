@@ -1,13 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://cn7fstplsbswa"]
+[gd_scene load_steps=4 format=3 uid="uid://cn7fstplsbswa"]
 
 [ext_resource type="FontFile" uid="uid://cntrlptjxl8sv" path="res://assets/fonts/LuckiestGuy-Regular.ttf" id="1_7hnmq"]
-[ext_resource type="StyleBox" uid="uid://dk8y7ickurv4p" path="res://scenes/game_hud/styles/button.tres" id="2_6kcex"]
-[ext_resource type="Texture2D" uid="uid://gtr0b1dxvr0x" path="res://assets/ui/buttonLarge.png" id="2_mn41p"]
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_n7vnp"]
-texture = ExtResource("2_mn41p")
-texture_margin_top = 8.0
-modulate_color = Color(0.913725, 0.913725, 0.913725, 1)
+[ext_resource type="PackedScene" uid="uid://d04x3tlvcgenn" path="res://scenes/ui/button_icon.tscn" id="4_wummo"]
+[ext_resource type="Texture2D" uid="uid://da3j7lym44s4i" path="res://assets/ui/leaderboardsSimple.png" id="5_xe2gh"]
 
 [node name="Game Over Hud" type="Control"]
 layout_mode = 3
@@ -39,8 +34,11 @@ offset_right = 170.5
 offset_bottom = -44.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0.709804, 0.803922, 0.843137, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 4
+theme_override_constants/shadow_offset_y = 4
+theme_override_constants/outline_size = 1
 theme_override_fonts/font = ExtResource("1_7hnmq")
 theme_override_font_sizes/font_size = 64
 text = "Game Over!"
@@ -58,37 +56,51 @@ offset_top = -26.0
 offset_bottom = 26.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0.709804, 0.803922, 0.843137, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_constants/outline_size = 1
 theme_override_fonts/font = ExtResource("1_7hnmq")
 theme_override_font_sizes/font_size = 36
 text = "Score: 0"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Restart" type="Button" parent="."]
-custom_minimum_size = Vector2(300, 100)
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+custom_minimum_size = Vector2(2.08165e-12, 100)
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
+anchors_preset = 14
 anchor_top = 0.5
-anchor_right = 0.5
+anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -40.5
-offset_top = 92.0
-offset_right = 40.5
-offset_bottom = 123.0
+offset_top = 51.0
+offset_bottom = 179.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_colors/font_color = Color(0.862745, 0.243137, 0.254902, 1)
-theme_override_colors/font_pressed_color = Color(0.862745, 0.243137, 0.254902, 1)
-theme_override_colors/font_hover_color = Color(0.862745, 0.243137, 0.254902, 1)
-theme_override_colors/font_focus_color = Color(0.862745, 0.243137, 0.254902, 1)
-theme_override_colors/font_outline_color = Color(0.462745, 0.0862745, 0.0941176, 1)
-theme_override_constants/outline_size = 2
-theme_override_fonts/font = ExtResource("1_7hnmq")
-theme_override_font_sizes/font_size = 48
-theme_override_styles/normal = ExtResource("2_6kcex")
-theme_override_styles/hover = SubResource("StyleBoxTexture_n7vnp")
-theme_override_styles/pressed = ExtResource("2_6kcex")
-text = "Try Again"
+theme_override_constants/separation = 24
+alignment = 1
+
+[node name="Retry" parent="HBoxContainer" instance=ExtResource("4_wummo")]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+
+[node name="Icon" parent="HBoxContainer/Retry" index="0"]
+offset_left = -46.0
+offset_top = -54.0
+offset_right = 54.0
+offset_bottom = 46.0
+
+[node name="Highscore" parent="HBoxContainer" instance=ExtResource("4_wummo")]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+
+[node name="Icon" parent="HBoxContainer/Highscore" index="0"]
+offset_left = -47.0
+offset_top = -67.0
+offset_right = 53.0
+offset_bottom = 33.0
+texture = ExtResource("5_xe2gh")
+
+[editable path="HBoxContainer/Retry"]
+[editable path="HBoxContainer/Highscore"]

@@ -8,11 +8,21 @@ extends Control
 
 
 func _ready():
+	Leaderboard.connect("auth_completed", _on_auth_completed)
 	Leaderboard.connect("list_loaded", _on_list_loaded)
 	Leaderboard.auth_user()
+	
+	$"Loading Animation".show()
+	$List.hide()
+	
+	$HBoxContainer/Score.text = str(GameManager.get_highscore())
 
 
 # Listeners
+
+
+func _on_auth_completed():
+	Leaderboard.get_highscore()
 
 
 func _on_list_loaded(dict):
@@ -21,9 +31,11 @@ func _on_list_loaded(dict):
 		l.get_child(0).text = key
 		l.get_child(1).text = str(dict[key])
 		
-		$VBoxContainer.add_child(l)
+		$List.add_child(l)
+	
+	$"Loading Animation".hide()
+	$List.show()
 
 
-func _on_submit_score_pressed():
-#	Leaderboard.post_score(GameManager.get_highscore())
-	Leaderboard.get_highscore()
+func _on_play_pressed():
+	GameManager.load_scene(GameManager.GAME_SCENE)

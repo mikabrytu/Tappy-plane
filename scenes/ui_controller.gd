@@ -12,7 +12,8 @@ extends CanvasLayer
 func _ready():
 	GameManager.connect("score_updated", _on_score_updated)
 	
-	$"Game Over/Restart".connect("pressed", _on_retry_pressed)
+	$"Game Over/HBoxContainer/Retry".connect("pressed", _on_retry_pressed)
+	$"Game Over/HBoxContainer/Highscore".connect("pressed", _on_highscore_pressed)
 	
 	_set_game_hud()
 
@@ -26,15 +27,25 @@ func _set_game_hud():
 
 
 func _set_game_over_hud():
-	$"Game Over/Score".text = "Score: " + str(GameManager.get_score())
+	var session_score = GameManager.get_current_score()
+	
+	$"Game Over/Score".text = "Score: " + str(session_score)
 	
 	$"Game Hud".hide()
-	$"Game Over/Restart".hide()
+	$"Game Over/HBoxContainer".hide()
 	$"Game Over".show()
+	
+	var username = GameManager.get_username()
+	if username == "":
+		# TODO: Ask for player name
+		username = "godot-test" # This is a hack. Should be replaced by user input
+	
+	GameManager.update_userdata(username, session_score)
+	GameManager.reset_score()
 	
 	await get_tree().create_timer(1.5).timeout
 	
-	$"Game Over/Restart".show()
+	$"Game Over/HBoxContainer".show()
 
 
 # Listeners
@@ -45,9 +56,11 @@ func _on_player_die():
 
 
 func _on_retry_pressed():
-	GameManager.try_save_highscore()
-	GameManager.reset_score()
 	get_tree().reload_current_scene()
+
+
+func _on_highscore_pressed():
+	GameManager.load_scene(GameManager.HIGHSCORE_SCENE)
 
 
 func _on_score_updated(score):

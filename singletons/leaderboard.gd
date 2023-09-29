@@ -1,13 +1,13 @@
 extends Node
 
 
+signal auth_completed
 signal list_loaded(dict)
 
 var game_API_key = "dev_b4bf1b63b4af4130b2a8b4c4641542da"
 var leaderboard_key = "18022"
 var development_mode = true
 var session_token = ""
-var player_identifier = ""
 
 # API Calls
 const BASE_URL = "https://api.lootlocker.io/game"
@@ -55,11 +55,23 @@ func auth_user():
 		"game_version": "0.10.0.0"
 	}
 	
+	var id = GameManager.get_user_id()
+	if id != "":
+		data = {
+			"game_key": game_API_key,
+			"player_identifier": id,
+			"game_version": "0.10.0.0"
+		}
+	
 	_print_call(url, headers, data)
 	
 	add_child(request)
 	request.request(url, headers, method, JSON.stringify(data))
 	request.request_completed.connect(self._on_auth_user_completed)
+
+
+func is_authenticated() -> bool:
+	return session_token != ""
 
 
 func get_highscore():
@@ -104,11 +116,18 @@ func _on_auth_user_completed(result, response_code, headers, body):
 	
 	if data == null:
 		return
+	if not data.success:
+		printerr(data)
+		return
 	
 	session_token = data.session_token
-	player_identifier = data.player_identifier
+	
+	var id = GameManager.get_user_id()
+	if id == "":
+		GameManager.update_userdata("", 0, data.player_identifier)
 	
 	_print_response(response_code, data)
+	auth_completed.emit()
 
 
 func _on_get_highscore_completed(result, response_code, headers, body):
@@ -126,4 +145,12 @@ func _on_get_highscore_completed(result, response_code, headers, body):
 
 
 func _on_post_score_completed(result, response_code, headers, body):
-	_print_response(response_code, body)
+	var data = parse_response(body)
+	
+	if data == null:
+		return
+	if response_code != 200:
+		printerr(data)
+		return
+	
+	_print_response(response_code, data)
