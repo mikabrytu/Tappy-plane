@@ -1,0 +1,147 @@
+[gd_scene load_steps=12 format=3 uid="uid://na6hw1cjbybq"]
+
+[ext_resource type="Texture2D" uid="uid://coqc6gu64ullc" path="res://assets/ui/green_button06.png" id="1_5cdix"]
+[ext_resource type="Script" path="res://scenes/game_hud/input_popup.gd" id="1_c7ydw"]
+[ext_resource type="FontFile" uid="uid://cntrlptjxl8sv" path="res://assets/fonts/LuckiestGuy-Regular.ttf" id="2_utqy2"]
+[ext_resource type="PackedScene" uid="uid://d04x3tlvcgenn" path="res://scenes/ui/button_icon.tscn" id="3_dedht"]
+[ext_resource type="Texture2D" uid="uid://c8d8bteka24a6" path="res://assets/ui/checkmark.png" id="4_4kwsx"]
+[ext_resource type="Texture2D" uid="uid://b6t0gfna6j02v" path="res://assets/ui/red_button04.png" id="5_37tyf"]
+[ext_resource type="Texture2D" uid="uid://b7bo6xcx7x1f3" path="res://assets/ui/red_button05.png" id="6_636l3"]
+[ext_resource type="Texture2D" uid="uid://bkn8micood7xf" path="res://assets/ui/cross.png" id="7_cct5x"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_trejw"]
+texture = ExtResource("5_37tyf")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1h5vi"]
+texture = ExtResource("5_37tyf")
+modulate_color = Color(0.929412, 0.929412, 0.929412, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_68jfy"]
+texture = ExtResource("6_636l3")
+
+[node name="Input Popup" type="Control"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+script = ExtResource("1_c7ydw")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -225.0
+offset_right = 200.0
+offset_bottom = 175.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_5cdix")
+patch_margin_left = 5
+patch_margin_top = 5
+patch_margin_right = 5
+patch_margin_bottom = 9
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -64.0
+offset_top = -125.0
+offset_right = 64.0
+offset_bottom = -99.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_shadow_color = Color(0.709804, 0.803922, 0.843137, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_constants/outline_size = 1
+theme_override_fonts/font = ExtResource("2_utqy2")
+theme_override_font_sizes/font_size = 36
+text = "Type Your Name"
+
+[node name="TextEdit" type="TextEdit" parent="."]
+custom_minimum_size = Vector2(300, 50)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = -58.0
+offset_right = 150.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/line_spacing = 15
+theme_override_fonts/font = ExtResource("2_utqy2")
+theme_override_font_sizes/font_size = 28
+placeholder_text = "Name..."
+
+[node name="Submit" parent="." instance=ExtResource("3_dedht")]
+layout_mode = 1
+anchors_preset = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 32.0
+offset_top = 32.0
+offset_right = 104.0
+offset_bottom = 104.0
+grow_horizontal = 1
+grow_vertical = 1
+
+[node name="Icon" parent="Submit" index="0"]
+offset_left = -31.0
+offset_top = -35.0
+offset_right = 33.0
+offset_bottom = 29.0
+texture = ExtResource("4_4kwsx")
+expand_mode = 2
+stretch_mode = 4
+
+[node name="Cancel" parent="." instance=ExtResource("3_dedht")]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 0.0
+offset_left = -104.0
+offset_top = 32.0
+offset_right = -32.0
+offset_bottom = 104.0
+grow_horizontal = 0
+grow_vertical = 1
+theme_override_styles/normal = SubResource("StyleBoxTexture_trejw")
+theme_override_styles/hover = SubResource("StyleBoxTexture_1h5vi")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_68jfy")
+
+[node name="Icon" parent="Cancel" index="0"]
+offset_left = -32.0
+offset_top = -36.0
+offset_right = 32.0
+offset_bottom = 28.0
+texture = ExtResource("7_cct5x")
+expand_mode = 2
+stretch_mode = 4
+
+[connection signal="text_changed" from="TextEdit" to="." method="_on_text_edit_text_changed"]
+
+[editable path="Submit"]
+[editable path="Cancel"]

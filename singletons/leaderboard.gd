@@ -98,7 +98,7 @@ func post_score(score: int):
 	var method = HTTPClient.METHOD_POST
 	var data = {
 		"score": score,
-		"member_id": "test-godot"
+		"member_id": GameManager.get_username()
 	}
 	
 	_print_call(url, headers, data)

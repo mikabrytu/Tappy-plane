@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://cn7fstplsbswa"]
+[gd_scene load_steps=5 format=3 uid="uid://cn7fstplsbswa"]
 
 [ext_resource type="FontFile" uid="uid://cntrlptjxl8sv" path="res://assets/fonts/LuckiestGuy-Regular.ttf" id="1_7hnmq"]
+[ext_resource type="PackedScene" uid="uid://na6hw1cjbybq" path="res://scenes/game_hud/input_popup.tscn" id="4_okrik"]
 [ext_resource type="PackedScene" uid="uid://d04x3tlvcgenn" path="res://scenes/ui/button_icon.tscn" id="4_wummo"]
 [ext_resource type="Texture2D" uid="uid://da3j7lym44s4i" path="res://assets/ui/leaderboardsSimple.png" id="5_xe2gh"]
 
@@ -102,5 +103,15 @@ offset_right = 53.0
 offset_bottom = 33.0
 texture = ExtResource("5_xe2gh")
 
+[node name="Input Popup" parent="." instance=ExtResource("4_okrik")]
+visible = false
+layout_mode = 1
+
+[node name="Label" parent="Input Popup" index="1"]
+text = "New Highscore!"
+
 [editable path="HBoxContainer/Retry"]
 [editable path="HBoxContainer/Highscore"]
+[editable path="Input Popup"]
+[editable path="Input Popup/Submit"]
+[editable path="Input Popup/Cancel"]

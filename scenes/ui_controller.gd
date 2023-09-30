@@ -5,7 +5,6 @@ extends CanvasLayer
 @export var punch_strength: float
 @export var punch_duration: float
 
-
 # Godot Messages
 
 
@@ -33,18 +32,23 @@ func _set_game_over_hud():
 	
 	$"Game Hud".hide()
 	$"Game Over/HBoxContainer".hide()
+	$"Game Over/Input Popup".hide()
 	$"Game Over".show()
 	
 	var username = GameManager.get_username()
 	if username == "":
-		# TODO: Ask for player name
-		username = "godot-test" # This is a hack. Should be replaced by user input
-	
-	GameManager.update_userdata(username, session_score)
+		$"Game Over/Input Popup/Submit".connect("pressed", _on_username_submit)
+		$"Game Over/Input Popup".show()
+	else:
+		_set_game_over_buttons(username, session_score)
+
+
+func _set_game_over_buttons(username, score):
+	GameManager.update_userdata(username, score)
 	GameManager.reset_score()
 	
 	await get_tree().create_timer(1.5).timeout
-	
+
 	$"Game Over/HBoxContainer".show()
 
 
@@ -73,3 +77,11 @@ func _on_score_updated(score):
 	).from(Vector2.ONE * punch_strength)
 	
 	$"Game Hud/Score".text = "Score: " + str(score)
+
+
+func _on_username_submit():
+	var username = $"Game Over/Input Popup/TextEdit".text
+	
+	$"Game Over/Input Popup".hide()
+	
+	_set_game_over_buttons(username, GameManager.get_current_score())
