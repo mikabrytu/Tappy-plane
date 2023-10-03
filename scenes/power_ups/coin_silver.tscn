@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://r1houxjrpuoy"]
+[gd_scene load_steps=18 format=3 uid="uid://r1houxjrpuoy"]
 
 [ext_resource type="Script" path="res://scenes/power_ups/coin.gd" id="1_o4l6q"]
 [ext_resource type="Texture2D" uid="uid://tv8aueqfphns" path="res://assets/power_ups/silver_1.png" id="2_vuxqc"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://d0jo1yl4pahfg" path="res://assets/power_ups/silver_2_f.png" id="7_dw5ji"]
 [ext_resource type="AudioStream" uid="uid://cq1p1v7pqoksc" path="res://assets/audio/score.wav" id="8_k3wkt"]
 [ext_resource type="Texture2D" uid="uid://wy0im888yxie" path="res://assets/vfx/symbol_02.png" id="9_aryc4"]
+[ext_resource type="PackedScene" uid="uid://bti2lopb4idqu" path="res://scenes/ui/floating_score.tscn" id="10_qndh3"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ts6kd"]
 animations = [{
@@ -101,6 +102,11 @@ one_shot = true
 speed_scale = 2.0
 randomness = 0.04
 local_coords = true
+
+[node name="Floating Score" parent="." instance=ExtResource("10_qndh3")]
+offset_left = -26.0
+offset_top = -24.0
+offset_right = 20.0
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

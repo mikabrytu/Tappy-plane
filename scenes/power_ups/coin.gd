@@ -33,6 +33,7 @@ func _on_body_entered(_body):
 	$CollisionShape2D.set_deferred("disabled", true)
 	$GPUParticles2D.emitting = true
 	$AnimatedSprite2D.hide()
+	$"Floating Score".play(value)
 	
 	GameManager.increase_score(value)
 	hit.emit()

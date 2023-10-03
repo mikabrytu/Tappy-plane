@@ -32,8 +32,6 @@ func _process(_delta):
 		_fly()
 	if Input.is_action_just_pressed("click_right"):
 		_attack()
-	if Input.is_action_just_pressed("ui_accept"):
-		get_tree().reload_current_scene()
 
 
 #func _input(event):

@@ -7,6 +7,7 @@ script = ExtResource("1_44r28")
 spawn_position = NodePath("Marker2D")
 spawn_offset = Vector2(300, 450)
 min_max_timer = Vector2(2, 4)
+streak_threshold = Vector2(5, 15)
 
 [node name="Timer" type="Timer" parent="."]
 

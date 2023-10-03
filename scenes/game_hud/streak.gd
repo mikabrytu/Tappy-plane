@@ -60,11 +60,11 @@ func streak(amount: int, level: Level):
 func _on_streak_updated(amount):
 	var level = Streak.Level.NONE
 	
-	if amount > 5 and amount <= 10:
+	if amount > 2 and amount <= 5:
 		level = Streak.Level.LOW
-	if amount > 10 and amount <= 30:
+	if amount > 5 and amount <= 15:
 		level = Streak.Level.MEDIUM
-	if amount > 30:
+	if amount > 15:
 		level = Streak.Level.HIGH
 	
 	streak(amount, level)
